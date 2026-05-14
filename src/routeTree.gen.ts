@@ -18,6 +18,7 @@ import { Route as FeedRouteImport } from './routes/feed'
 import { Route as DriveRouteImport } from './routes/drive'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as CompaniesRouteImport } from './routes/companies'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
@@ -68,6 +69,11 @@ const ContactsRoute = ContactsRouteImport.update({
   path: '/contacts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompaniesRoute = CompaniesRouteImport.update({
+  id: '/companies',
+  path: '/companies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChatRoute = ChatRouteImport.update({
   id: '/chat',
   path: '/chat',
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/analytics': typeof AnalyticsRoute
   '/calendar': typeof CalendarRoute
   '/chat': typeof ChatRoute
+  '/companies': typeof CompaniesRoute
   '/contacts': typeof ContactsRoute
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/analytics': typeof AnalyticsRoute
   '/calendar': typeof CalendarRoute
   '/chat': typeof ChatRoute
+  '/companies': typeof CompaniesRoute
   '/contacts': typeof ContactsRoute
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/analytics': typeof AnalyticsRoute
   '/calendar': typeof CalendarRoute
   '/chat': typeof ChatRoute
+  '/companies': typeof CompaniesRoute
   '/contacts': typeof ContactsRoute
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
@@ -142,6 +151,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/calendar'
     | '/chat'
+    | '/companies'
     | '/contacts'
     | '/docs'
     | '/drive'
@@ -157,6 +167,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/calendar'
     | '/chat'
+    | '/companies'
     | '/contacts'
     | '/docs'
     | '/drive'
@@ -172,6 +183,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/calendar'
     | '/chat'
+    | '/companies'
     | '/contacts'
     | '/docs'
     | '/drive'
@@ -188,6 +200,7 @@ export interface RootRouteChildren {
   AnalyticsRoute: typeof AnalyticsRoute
   CalendarRoute: typeof CalendarRoute
   ChatRoute: typeof ChatRoute
+  CompaniesRoute: typeof CompaniesRoute
   ContactsRoute: typeof ContactsRoute
   DocsRoute: typeof DocsRoute
   DriveRoute: typeof DriveRoute
@@ -264,6 +277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/companies': {
+      id: '/companies'
+      path: '/companies'
+      fullPath: '/companies'
+      preLoaderRoute: typeof CompaniesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chat': {
       id: '/chat'
       path: '/chat'
@@ -300,6 +320,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyticsRoute: AnalyticsRoute,
   CalendarRoute: CalendarRoute,
   ChatRoute: ChatRoute,
+  CompaniesRoute: CompaniesRoute,
   ContactsRoute: ContactsRoute,
   DocsRoute: DocsRoute,
   DriveRoute: DriveRoute,
