@@ -17,6 +17,7 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as FeedRouteImport } from './routes/feed'
 import { Route as DriveRouteImport } from './routes/drive'
 import { Route as DocsRouteImport } from './routes/docs'
+import { Route as CrmRouteImport } from './routes/crm'
 import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as CompaniesRouteImport } from './routes/companies'
 import { Route as ChatRouteImport } from './routes/chat'
@@ -64,6 +65,11 @@ const DocsRoute = DocsRouteImport.update({
   path: '/docs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CrmRoute = CrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactsRoute = ContactsRouteImport.update({
   id: '/contacts',
   path: '/contacts',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/chat': typeof ChatRoute
   '/companies': typeof CompaniesRoute
   '/contacts': typeof ContactsRoute
+  '/crm': typeof CrmRoute
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
   '/feed': typeof FeedRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/chat': typeof ChatRoute
   '/companies': typeof CompaniesRoute
   '/contacts': typeof ContactsRoute
+  '/crm': typeof CrmRoute
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
   '/feed': typeof FeedRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/chat': typeof ChatRoute
   '/companies': typeof CompaniesRoute
   '/contacts': typeof ContactsRoute
+  '/crm': typeof CrmRoute
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
   '/feed': typeof FeedRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/companies'
     | '/contacts'
+    | '/crm'
     | '/docs'
     | '/drive'
     | '/feed'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/companies'
     | '/contacts'
+    | '/crm'
     | '/docs'
     | '/drive'
     | '/feed'
@@ -185,6 +196,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/companies'
     | '/contacts'
+    | '/crm'
     | '/docs'
     | '/drive'
     | '/feed'
@@ -202,6 +214,7 @@ export interface RootRouteChildren {
   ChatRoute: typeof ChatRoute
   CompaniesRoute: typeof CompaniesRoute
   ContactsRoute: typeof ContactsRoute
+  CrmRoute: typeof CrmRoute
   DocsRoute: typeof DocsRoute
   DriveRoute: typeof DriveRoute
   FeedRoute: typeof FeedRoute
@@ -270,6 +283,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/crm': {
+      id: '/crm'
+      path: '/crm'
+      fullPath: '/crm'
+      preLoaderRoute: typeof CrmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contacts': {
       id: '/contacts'
       path: '/contacts'
@@ -322,6 +342,7 @@ const rootRouteChildren: RootRouteChildren = {
   ChatRoute: ChatRoute,
   CompaniesRoute: CompaniesRoute,
   ContactsRoute: ContactsRoute,
+  CrmRoute: CrmRoute,
   DocsRoute: DocsRoute,
   DriveRoute: DriveRoute,
   FeedRoute: FeedRoute,
