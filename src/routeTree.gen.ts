@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WebmailRouteImport } from './routes/webmail'
-import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as LoginRouteImport } from './routes/login'
@@ -18,9 +17,7 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as FeedRouteImport } from './routes/feed'
 import { Route as DriveRouteImport } from './routes/drive'
 import { Route as DocsRouteImport } from './routes/docs'
-import { Route as CrmRouteImport } from './routes/crm'
 import { Route as ContactsRouteImport } from './routes/contacts'
-import { Route as CompaniesRouteImport } from './routes/companies'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
@@ -29,11 +26,6 @@ import { Route as IndexRouteImport } from './routes/index'
 const WebmailRoute = WebmailRouteImport.update({
   id: '/webmail',
   path: '/webmail',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TasksRoute = TasksRouteImport.update({
-  id: '/tasks',
-  path: '/tasks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -71,19 +63,9 @@ const DocsRoute = DocsRouteImport.update({
   path: '/docs',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CrmRoute = CrmRouteImport.update({
-  id: '/crm',
-  path: '/crm',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactsRoute = ContactsRouteImport.update({
   id: '/contacts',
   path: '/contacts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CompaniesRoute = CompaniesRouteImport.update({
-  id: '/companies',
-  path: '/companies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChatRoute = ChatRouteImport.update({
@@ -112,9 +94,7 @@ export interface FileRoutesByFullPath {
   '/analytics': typeof AnalyticsRoute
   '/calendar': typeof CalendarRoute
   '/chat': typeof ChatRoute
-  '/companies': typeof CompaniesRoute
   '/contacts': typeof ContactsRoute
-  '/crm': typeof CrmRoute
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
   '/feed': typeof FeedRoute
@@ -122,7 +102,6 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
-  '/tasks': typeof TasksRoute
   '/webmail': typeof WebmailRoute
 }
 export interface FileRoutesByTo {
@@ -130,9 +109,7 @@ export interface FileRoutesByTo {
   '/analytics': typeof AnalyticsRoute
   '/calendar': typeof CalendarRoute
   '/chat': typeof ChatRoute
-  '/companies': typeof CompaniesRoute
   '/contacts': typeof ContactsRoute
-  '/crm': typeof CrmRoute
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
   '/feed': typeof FeedRoute
@@ -140,7 +117,6 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
-  '/tasks': typeof TasksRoute
   '/webmail': typeof WebmailRoute
 }
 export interface FileRoutesById {
@@ -149,9 +125,7 @@ export interface FileRoutesById {
   '/analytics': typeof AnalyticsRoute
   '/calendar': typeof CalendarRoute
   '/chat': typeof ChatRoute
-  '/companies': typeof CompaniesRoute
   '/contacts': typeof ContactsRoute
-  '/crm': typeof CrmRoute
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
   '/feed': typeof FeedRoute
@@ -159,7 +133,6 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
-  '/tasks': typeof TasksRoute
   '/webmail': typeof WebmailRoute
 }
 export interface FileRouteTypes {
@@ -169,9 +142,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/calendar'
     | '/chat'
-    | '/companies'
     | '/contacts'
-    | '/crm'
     | '/docs'
     | '/drive'
     | '/feed'
@@ -179,7 +150,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/settings'
-    | '/tasks'
     | '/webmail'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -187,9 +157,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/calendar'
     | '/chat'
-    | '/companies'
     | '/contacts'
-    | '/crm'
     | '/docs'
     | '/drive'
     | '/feed'
@@ -197,7 +165,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/settings'
-    | '/tasks'
     | '/webmail'
   id:
     | '__root__'
@@ -205,9 +172,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/calendar'
     | '/chat'
-    | '/companies'
     | '/contacts'
-    | '/crm'
     | '/docs'
     | '/drive'
     | '/feed'
@@ -215,7 +180,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/settings'
-    | '/tasks'
     | '/webmail'
   fileRoutesById: FileRoutesById
 }
@@ -224,9 +188,7 @@ export interface RootRouteChildren {
   AnalyticsRoute: typeof AnalyticsRoute
   CalendarRoute: typeof CalendarRoute
   ChatRoute: typeof ChatRoute
-  CompaniesRoute: typeof CompaniesRoute
   ContactsRoute: typeof ContactsRoute
-  CrmRoute: typeof CrmRoute
   DocsRoute: typeof DocsRoute
   DriveRoute: typeof DriveRoute
   FeedRoute: typeof FeedRoute
@@ -234,7 +196,6 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SettingsRoute: typeof SettingsRoute
-  TasksRoute: typeof TasksRoute
   WebmailRoute: typeof WebmailRoute
 }
 
@@ -245,13 +206,6 @@ declare module '@tanstack/react-router' {
       path: '/webmail'
       fullPath: '/webmail'
       preLoaderRoute: typeof WebmailRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tasks': {
-      id: '/tasks'
-      path: '/tasks'
-      fullPath: '/tasks'
-      preLoaderRoute: typeof TasksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -303,25 +257,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/crm': {
-      id: '/crm'
-      path: '/crm'
-      fullPath: '/crm'
-      preLoaderRoute: typeof CrmRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contacts': {
       id: '/contacts'
       path: '/contacts'
       fullPath: '/contacts'
       preLoaderRoute: typeof ContactsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/companies': {
-      id: '/companies'
-      path: '/companies'
-      fullPath: '/companies'
-      preLoaderRoute: typeof CompaniesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chat': {
@@ -360,9 +300,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyticsRoute: AnalyticsRoute,
   CalendarRoute: CalendarRoute,
   ChatRoute: ChatRoute,
-  CompaniesRoute: CompaniesRoute,
   ContactsRoute: ContactsRoute,
-  CrmRoute: CrmRoute,
   DocsRoute: DocsRoute,
   DriveRoute: DriveRoute,
   FeedRoute: FeedRoute,
@@ -370,9 +308,18 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SettingsRoute: SettingsRoute,
-  TasksRoute: TasksRoute,
   WebmailRoute: WebmailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
