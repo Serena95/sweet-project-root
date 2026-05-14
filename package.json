@@ -25,7 +25,8 @@
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "vite": "catalog:",
-    "wrangler": "^3.0.0"
+    "wrangler": "^3.0.0",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.4",
