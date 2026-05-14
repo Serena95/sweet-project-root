@@ -10,7 +10,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { lovable } from "@/integrations/lovable";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -65,16 +64,14 @@ function LoginPage() {
 
   const handleGoogle = async () => {
     setGoogleLoading(true);
-    const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: `${window.location.origin}/` },
     });
-    if (result.error) {
+    if (error) {
       setGoogleLoading(false);
-      toast.error(result.error.message ?? "Errore con Google");
-      return;
+      toast.error(error.message);
     }
-    if (result.redirected) return;
-    navigate({ to: "/" });
   };
 
   return (
