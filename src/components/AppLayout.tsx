@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import {
   LayoutDashboard,
   Users,
@@ -43,7 +43,7 @@ const navItems: NavItem[] = [
   { to: "/settings", label: "Impostazioni", icon: SettingsIcon },
 ];
 
-export function AppLayout() {
+export function AppLayout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation();
 
   return (
@@ -126,7 +126,7 @@ export function AppLayout() {
         </header>
 
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
-          <Outlet />
+          {children}
         </main>
       </div>
     </div>
