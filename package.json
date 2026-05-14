@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
+    "dev": "vite dev",
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
@@ -11,6 +12,35 @@
   "private": true,
   "devDependencies": {
     "typescript": "~5.9.2",
-    "prettier": "^3.8.1"
+    "prettier": "^3.8.1",
+    "@cloudflare/vite-plugin": "^1.0.0",
+    "@lovable.dev/vite-tanstack-config": "*",
+    "@tailwindcss/vite": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-router": "^1.95.0",
+    "@tanstack/react-start": "^1.95.0",
+    "@tanstack/router-plugin": "^1.95.0",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "vite": "catalog:",
+    "wrangler": "^3.0.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.4",
+    "@radix-ui/react-dialog": "^1.1.7",
+    "@radix-ui/react-separator": "^1.1.3",
+    "@radix-ui/react-slot": "^1.2.0",
+    "@radix-ui/react-tooltip": "^1.2.0",
+    "class-variance-authority": "catalog:",
+    "clsx": "catalog:",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwindcss": "catalog:",
+    "tw-animate-css": "^1.4.0"
   }
 }
