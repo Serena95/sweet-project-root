@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite dev",
-    "build": "bun run typecheck && node scripts/run-workspace-scripts.mjs build artifacts/*",
+    "build": "bun run typecheck && vite build",
     "typecheck:libs": "tsc --build",
-    "typecheck": "bun run typecheck:libs && node scripts/run-workspace-scripts.mjs typecheck artifacts/* scripts"
+    "typecheck": "bun run typecheck:libs"
   },
   "private": true,
   "devDependencies": {
