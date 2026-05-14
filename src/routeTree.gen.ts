@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WebmailRouteImport } from './routes/webmail'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as FeedRouteImport } from './routes/feed'
@@ -38,6 +39,11 @@ const TasksRoute = TasksRouteImport.update({
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/feed': typeof FeedRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/webmail': typeof WebmailRoute
@@ -131,6 +138,7 @@ export interface FileRoutesByTo {
   '/feed': typeof FeedRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/webmail': typeof WebmailRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/feed': typeof FeedRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/webmail': typeof WebmailRoute
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/feed'
     | '/forgot-password'
     | '/login'
+    | '/reset-password'
     | '/settings'
     | '/tasks'
     | '/webmail'
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/feed'
     | '/forgot-password'
     | '/login'
+    | '/reset-password'
     | '/settings'
     | '/tasks'
     | '/webmail'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/feed'
     | '/forgot-password'
     | '/login'
+    | '/reset-password'
     | '/settings'
     | '/tasks'
     | '/webmail'
@@ -220,6 +232,7 @@ export interface RootRouteChildren {
   FeedRoute: typeof FeedRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SettingsRoute: typeof SettingsRoute
   TasksRoute: typeof TasksRoute
   WebmailRoute: typeof WebmailRoute
@@ -246,6 +259,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -348,6 +368,7 @@ const rootRouteChildren: RootRouteChildren = {
   FeedRoute: FeedRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SettingsRoute: SettingsRoute,
   TasksRoute: TasksRoute,
   WebmailRoute: WebmailRoute,
