@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WebmailRouteImport } from './routes/webmail'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as FeedRouteImport } from './routes/feed'
 import { Route as DriveRouteImport } from './routes/drive'
 import { Route as DocsRouteImport } from './routes/docs'
@@ -39,9 +41,19 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeedRoute = FeedRouteImport.update({
@@ -106,7 +118,9 @@ export interface FileRoutesByFullPath {
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
   '/feed': typeof FeedRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/webmail': typeof WebmailRoute
@@ -122,7 +136,9 @@ export interface FileRoutesByTo {
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
   '/feed': typeof FeedRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/webmail': typeof WebmailRoute
@@ -139,7 +155,9 @@ export interface FileRoutesById {
   '/docs': typeof DocsRoute
   '/drive': typeof DriveRoute
   '/feed': typeof FeedRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/webmail': typeof WebmailRoute
@@ -157,7 +175,9 @@ export interface FileRouteTypes {
     | '/docs'
     | '/drive'
     | '/feed'
+    | '/forgot-password'
     | '/login'
+    | '/reset-password'
     | '/settings'
     | '/tasks'
     | '/webmail'
@@ -173,7 +193,9 @@ export interface FileRouteTypes {
     | '/docs'
     | '/drive'
     | '/feed'
+    | '/forgot-password'
     | '/login'
+    | '/reset-password'
     | '/settings'
     | '/tasks'
     | '/webmail'
@@ -189,7 +211,9 @@ export interface FileRouteTypes {
     | '/docs'
     | '/drive'
     | '/feed'
+    | '/forgot-password'
     | '/login'
+    | '/reset-password'
     | '/settings'
     | '/tasks'
     | '/webmail'
@@ -206,7 +230,9 @@ export interface RootRouteChildren {
   DocsRoute: typeof DocsRoute
   DriveRoute: typeof DriveRoute
   FeedRoute: typeof FeedRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SettingsRoute: typeof SettingsRoute
   TasksRoute: typeof TasksRoute
   WebmailRoute: typeof WebmailRoute
@@ -235,11 +261,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feed': {
@@ -326,7 +366,9 @@ const rootRouteChildren: RootRouteChildren = {
   DocsRoute: DocsRoute,
   DriveRoute: DriveRoute,
   FeedRoute: FeedRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SettingsRoute: SettingsRoute,
   TasksRoute: TasksRoute,
   WebmailRoute: WebmailRoute,

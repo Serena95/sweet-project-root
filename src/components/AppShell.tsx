@@ -1,19 +1,38 @@
-import { Outlet, useRouterState } from "@tanstack/react-router";
-import { Bell, HelpCircle, Plus, Search } from "lucide-react";
+import { useEffect } from "react";
+import { Outlet, useRouterState, useNavigate } from "@tanstack/react-router";
+import { Bell, HelpCircle, LogOut, Plus, Search } from "lucide-react";
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/hooks/useAuth";
 
 const PUBLIC_PATHS = new Set(["/login", "/forgot-password", "/reset-password", "/invite"]);
 
 export function AppShell() {
   const pathname = useRouterState({ select: (r) => r.location.pathname });
+  const { session, loading, signOut } = useAuth();
+  const navigate = useNavigate();
+  const isPublic = PUBLIC_PATHS.has(pathname);
+
+  useEffect(() => {
+    if (!loading && !session && !isPublic) {
+      navigate({ to: "/login" });
+    }
+  }, [loading, session, isPublic, navigate]);
 
   // Public routes (login, etc.) render without the chrome.
-  if (PUBLIC_PATHS.has(pathname)) {
+  if (isPublic) {
     return <Outlet />;
+  }
+
+  if (loading || !session) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      </div>
+    );
   }
 
   return (
@@ -38,6 +57,9 @@ export function AppShell() {
             <Button size="sm" className="gap-1.5">
               <Plus className="h-4 w-4" />
               <span className="hidden sm:inline">Nuovo</span>
+            </Button>
+            <Button variant="ghost" size="icon" aria-label="Esci" onClick={() => signOut()}>
+              <LogOut className="h-4 w-4" />
             </Button>
           </header>
 
